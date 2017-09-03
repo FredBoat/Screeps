@@ -18,7 +18,12 @@ var role = {
             }
         } else {
             //TODO: Expand
-            var target2 = room.find(FIND_MY_SPAWNS)[0];
+            var target2 = creep.pos.findClosestByPath(FIND_MY_STRUCTURES, {
+                filter: function(structure){
+                    return (structure.structureType === STRUCTURE_SPAWN || structure.structureType === STRUCTURE_EXTENSION)
+                        && structure.energyCapacity > structure.energy;
+                }
+            });
             if (creep.transfer(target2, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
                 creep.moveTo(target2);
             }
