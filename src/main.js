@@ -1,3 +1,4 @@
+var construction = require("control.construction");
 var gc = require("control.gc");
 var spawner = require("control.spawner");
 var roleMiner = require("role.miner");
@@ -37,5 +38,7 @@ module.exports.loop = function () {
     for(var k in Game.rooms) {
         var room = Game.rooms[k];
         spawner.run(room);
+        if (room.controller.level >= 2)
+            construction.runExtensionBuilder(room);
     }
 };
