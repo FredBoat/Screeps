@@ -15,6 +15,7 @@ Write the credentials to `credentials.json`:
 }
 ```
 
+## Usage
 Push to Screeps:
 ```sh
 grunt
