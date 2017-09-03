@@ -4,15 +4,17 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-rsync');
 
     var credentials = grunt.file.readJSON('credentials.json');
 
     grunt.initConfig({
         screeps: {
             options: {
+                server: credentials.server,
                 email: credentials.email,
                 password: credentials.password,
-                branch: 'v2.0',
+                branch: 'default',
                 ptr: false
             },
             dist: {
@@ -46,6 +48,7 @@ module.exports = function(grunt) {
         clean: {
             'dist': ['dist']
         }
+
     });
 
     grunt.registerTask('default', ['clean','copy','screeps']);
