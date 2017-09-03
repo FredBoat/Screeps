@@ -1,8 +1,9 @@
 var construction = require("control.construction");
 var gc = require("control.gc");
 var spawner = require("control.spawner");
-var roleMiner = require("role.miner");
 var roleHauler = require("role.hauler");
+var roleMiner = require("role.miner");
+var roleUpgrader = require("role.upgrader");
 
 module.exports.loop = function () {
 
@@ -26,6 +27,9 @@ module.exports.loop = function () {
                     break;
                 case "hauler":
                     roleHauler.run(creep);
+                    break;
+                case "upgrader":
+                    roleUpgrader.run(creep);
                     break;
             }
         } catch(err){

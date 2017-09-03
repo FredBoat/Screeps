@@ -17,10 +17,8 @@ var role = {
                 creep.moveTo(target);
             }
         } else {
-            //TODO: Expand
-            var target2 = room.find(FIND_MY_SPAWNS)[0];
-            if (creep.transfer(target2, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
-                creep.moveTo(target2);
+            if (creep.upgradeController(room.controller) === ERR_NOT_IN_RANGE) {
+                creep.moveTo(room.controller);
             }
         }
     }
