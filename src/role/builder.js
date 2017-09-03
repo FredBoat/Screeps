@@ -30,6 +30,10 @@ var role = {
                 });
             }
         }
+    },
+
+    design: function (room) {
+        return [WORK, CARRY, CARRY, MOVE];
     }
 };
 

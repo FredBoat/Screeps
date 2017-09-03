@@ -1,3 +1,8 @@
+var roleBuilder = require("role.builder");
+var roleHauler = require("role.hauler");
+var roleMiner = require("role.miner");
+var roleUpgrader = require("role.upgrader");
+
 module.exports = {
     run: function (room) {
         var spawn = this.getSpawnFromRoom(room);
@@ -25,15 +30,17 @@ module.exports = {
             }
         }
 
+        room.memory.roles = counts;
+
         //Spawn more creeps if needed
         if (desiredMiners > counts["miner"]){
-            spawn.createCreep([MOVE, WORK], undefined,                      {role: "miner", home: room.name});
+            spawn.createCreep(roleMiner.design(room), undefined,                      {role: "miner", home: room.name});
         } else if (desiredHaulers > counts["hauler"]){
-            spawn.createCreep([MOVE, CARRY], undefined,                     {role: "hauler", home: room.name});
+            spawn.createCreep(roleHauler.design(room), undefined,                     {role: "hauler", home: room.name});
         } else if (desiredUpgraders > counts["upgrader"]){
-            spawn.createCreep([MOVE, CARRY, CARRY, WORK], undefined,        {role: "upgrader", home: room.name});
+            spawn.createCreep(roleUpgrader.design(room), undefined,                   {role: "upgrader", home: room.name});
         } else if (desiredBuilders > counts["builder"]){
-            spawn.createCreep([MOVE, CARRY, CARRY, WORK], undefined,        {role: "builder", home: room.name});
+            spawn.createCreep(roleBuilder.design(room), undefined,                    {role: "builder", home: room.name});
         }
     },
 

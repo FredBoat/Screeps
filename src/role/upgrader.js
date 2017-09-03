@@ -21,6 +21,10 @@ var role = {
                 creep.moveTo(room.controller);
             }
         }
+    },
+
+    design: function (room) {
+        return [WORK, CARRY, CARRY, MOVE];
     }
 };
 
