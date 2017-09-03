@@ -24,7 +24,7 @@ module.exports = function(grunt) {
             scripts: {
                 files: ['src/**/*.js'],
                 tasks: ['clean','copy','screeps']
-            },
+            }
         },
 
         copy: {
@@ -40,7 +40,7 @@ module.exports = function(grunt) {
                         return dest + src.replace(/\//g,'.');
                     }
                 }]
-            },
+            }
         },
 
         clean: {
@@ -49,4 +49,4 @@ module.exports = function(grunt) {
     });
 
     grunt.registerTask('default', ['clean','copy','screeps']);
-}
+};
