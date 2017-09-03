@@ -1,5 +1,6 @@
 var spawner = require("control.spawner");
 var roleMiner = require("role.miner");
+var roleHauler = require("role.hauler");
 
 module.exports.loop = function () {
     for(var name in Game.creeps) {
@@ -9,6 +10,9 @@ module.exports.loop = function () {
             switch (creep.memory.role) {
                 case "miner":
                     roleMiner.run(creep);
+                    break;
+                case "hauler":
+                    roleHauler.run(creep);
                     break;
             }
         } catch(err){
