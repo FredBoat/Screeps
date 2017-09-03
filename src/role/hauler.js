@@ -18,10 +18,9 @@ var roleExtractor = {
             }
         } else {
             //TODO: Expand
-            var target = room.find(FIND_MY_SPAWNS)[0];
-            console.log(creep.transfer(target, RESOURCE_ENERGY));
-            if (creep.transfer(target, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
-                creep.moveTo(target);
+            var target2 = room.find(FIND_MY_SPAWNS)[0];
+            if (creep.transfer(target2, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
+                creep.moveTo(target2);
             }
         }
     }

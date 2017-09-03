@@ -8,21 +8,22 @@ module.exports = {
         var desiredMiners = 2;
         var desiredHaulers = 2;
 
-        var counts = {};
+        var counts = {
+            miner: 0,
+            hauler: 0
+        };
 
         for(var name in Game.creeps) {
             var creep = Game.creeps[name];
 
             if(creep.memory.home === room.name){
-                counts[creep.memory.role] = counts[creep.memory.role] === undefined
-                    ? 0
-                    : counts[creep.memory.role] + 1;
+                counts[creep.memory.role]++;
             }
         }
 
         //Spawn more creeps if needed
         if (desiredMiners > counts["miner"]){
-            spawn.createCreep([MOVE, WORK, CARRY], undefined,   {role: 'miner', home: room.name});
+            spawn.createCreep([MOVE, WORK], undefined,   {role: 'miner', home: room.name});
         } else if (desiredHaulers > counts["hauler"]){
             spawn.createCreep([MOVE, CARRY], undefined,         {role: 'hauler', home: room.name});
         }
