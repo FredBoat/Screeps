@@ -10,7 +10,13 @@ module.exports = {
             return;
         }
 
-        var desiredMiners = 2;
+
+
+        if (room.memory.minerSlots === undefined) {
+            room.memory.minerSlots = roleMiner.getTotalSlots(room);
+        }
+
+        var desiredMiners = room.memory.minerSlots;
         var desiredHaulers = 2;
         var desiredUpgraders = 2;
         var desiredBuilders = 1;
@@ -28,6 +34,11 @@ module.exports = {
             if(creep.memory.home === room.name){
                 counts[creep.memory.role]++;
             }
+        }
+
+        // Make sure we don't just create a bunch of miners without haulers
+        if (counts["hauler"] === 0 && counts["miner"] !== 0) {
+            desiredMiners = 0;
         }
 
         room.memory.roles = counts;
