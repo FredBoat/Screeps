@@ -1,8 +1,20 @@
+var gc = require("control.gc");
 var spawner = require("control.spawner");
 var roleMiner = require("role.miner");
 var roleHauler = require("role.hauler");
 
 module.exports.loop = function () {
+
+    if (!Memory.misc) Memory.misc = {};
+
+    //Start with gc checks
+    if(Memory.misc.creepsLastTick){
+        if(Memory.misc.creepsLastTick > Game.creeps.length){
+            gc.gcCreep();
+        }
+    }
+    Memory.misc.creepsLastTick = Game.creeps.length;
+
     for(var name in Game.creeps) {
         var creep = Game.creeps[name];
 
