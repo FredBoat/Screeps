@@ -1,4 +1,5 @@
 require("util.source");
+require("util.pathfinding");
 
 var role = {
 
@@ -16,7 +17,7 @@ var role = {
         var target = Game.getObjectById(creep.memory.target);
 
         if (creep.harvest(target) === ERR_NOT_IN_RANGE) {
-            creep.moveTo(target, {
+            creep.moveToCheap(target, {
                 visualizePathStyle: {
                     fill: 'transparent',
                     stroke: '#fff',

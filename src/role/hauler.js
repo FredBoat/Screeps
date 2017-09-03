@@ -1,3 +1,5 @@
+require("util.pathfinding");
+
 var role = {
 
     /** @param {Creep} creep **/
@@ -14,7 +16,7 @@ var role = {
             var target = room.find(FIND_DROPPED_RESOURCES)[0];
 
             if (creep.pickup(target) === ERR_NOT_IN_RANGE) {
-                creep.moveTo(target);
+                creep.moveToCheap(target);
             }
         } else {
             //TODO: Expand
@@ -25,7 +27,7 @@ var role = {
                 }
             });
             if (creep.transfer(target2, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
-                creep.moveTo(target2);
+                creep.moveToCheap(target2);
             }
         }
     },

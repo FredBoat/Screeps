@@ -14,7 +14,7 @@ module.exports = function(grunt) {
                 server: credentials.server,
                 email: credentials.email,
                 password: credentials.password,
-                branch: 'default',
+                branch: 'cheaper-path',
                 ptr: false
             },
             dist: {

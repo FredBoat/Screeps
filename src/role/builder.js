@@ -1,3 +1,5 @@
+require("util.pathfinding");
+
 var role = {
 
     /** @param {Creep} creep **/
@@ -14,12 +16,12 @@ var role = {
             var target = room.find(FIND_DROPPED_RESOURCES)[0];
 
             if (creep.pickup(target) === ERR_NOT_IN_RANGE) {
-                creep.moveTo(target);
+                creep.moveToCheap(target);
             }
         } else {
             var site = creep.pos.findClosestByRange(FIND_MY_CONSTRUCTION_SITES);
             if (creep.build(site) === ERR_NOT_IN_RANGE) {
-                creep.moveTo(site, {
+                creep.moveToCheap(site, {
                     visualizePathStyle: {
                         fill: 'transparent',
                         stroke: '#fff',
