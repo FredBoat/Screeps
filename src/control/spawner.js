@@ -3,6 +3,8 @@ var roleHauler = require("role.hauler");
 var roleMiner = require("role.miner");
 var roleUpgrader = require("role.upgrader");
 
+var _ = require("lodash");
+
 module.exports = {
     run: function (room) {
         var spawn = this.getSpawnFromRoom(room);
@@ -21,20 +23,7 @@ module.exports = {
         var desiredUpgraders = 2;
         var desiredBuilders = 1;
 
-        var counts = {
-            miner: 0,
-            hauler: 0,
-            upgrader: 0,
-            builder: 0
-        };
-
-        for(var name in Game.creeps) {
-            var creep = Game.creeps[name];
-
-            if(creep.memory.home === room.name){
-                counts[creep.memory.role]++;
-            }
-        }
+        var counts = _.countBy(Game.creeps, _.property("memory.role"));
 
         // Make sure we don't just create a bunch of miners without haulers
         if (counts["hauler"] === 0 && counts["miner"] !== 0) {
